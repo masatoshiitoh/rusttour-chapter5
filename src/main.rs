@@ -14,6 +14,37 @@ fn main() {
     sort_works(&mut table);
     show(&table);
     show(&table);
+
+
+    // P.93
+    let mut y = 32;
+    {
+        let m = &mut y;
+        *m += 32;
+        assert!(*m == 64);
+    }
+    assert!(y == 64);
+
+    struct Anime { name: &'static str, bechdel_pass: bool}
+    let aria = Anime { name:  "Aria: The Animation", bechdel_pass: true};
+    let anime_ref = &aria;
+    assert_eq!(anime_ref.name, "Aria: The Animation");
+    // 参照を明示するとこうなる
+    assert_eq!((*anime_ref).name, "Aria: The Animation");
+
+
+    let mut v = vec![1973, 1968, 2001];
+    v.sort();
+    eprintln!("sorted vec: {:?}", v);
+    let mut v2 = vec![1973, 1968, 2001];
+    (&mut v2).sort(); // 3行上と等価。
+    eprintln!("sorted v2: {:?}", v2);
+
+    let x=10;
+    let y =20;
+    let mut r = &x;
+    if true {r = &y;}
+    assert!(*r == 20);
 }
 
 fn show(table: &Table) {
