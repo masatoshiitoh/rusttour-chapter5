@@ -45,7 +45,45 @@ fn main() {
     let mut r = &x;
     if true {r = &y;}
     assert!(*r == 20);
+
+    struct Point {x: i32, y: i32}
+    let point = Point {x: 1000, y: 729};
+    let r: &Point = &point;
+    let rr: &&Point = &r;
+    let rrr: &&&Point = &rr;
+    assert_eq!(rrr.y, 729);
+
+    let x = 10;
+    let y = 10;
+    let rx = &x;
+    let ry = &y;
+    let rrx = &rx;
+    let rry = &ry;
+    assert!(rrx <= rry);
+    assert!(rrx == rry);
+    assert!(!std::ptr::eq(rx, ry));
+
+
+
+
 }
+
+fn fractorial(n: usize) -> usize {
+    (1..n+1).product()
+}
+
+#[test]
+fn test_fractorial() {
+    let f1 = fractorial(1);
+    assert!(f1 == 1);
+
+    let f2 = fractorial(2);
+    assert!((f2 == 2));
+
+    let f3 = fractorial(3);
+    assert!((f3 == 6));
+}
+
 
 fn show(table: &Table) {
     for (artist, works) in table {
