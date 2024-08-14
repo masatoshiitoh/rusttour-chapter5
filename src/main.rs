@@ -65,6 +65,8 @@ fn main() {
 
 
 
+    let r = &fractorial(6);
+    assert_eq!(r + &1009, 1729);
 
 }
 
