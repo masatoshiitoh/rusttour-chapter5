@@ -101,7 +101,7 @@ fn main() {
 }
 
 fn fractorial(n: usize) -> usize {
-    (1..n+1).product()
+    (1..n+1).product() // X..Yは、Y未満(Yを含まない)、という範囲を生成する表現。
 }
 
 #[test]
